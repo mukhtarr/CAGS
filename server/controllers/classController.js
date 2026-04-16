@@ -23,7 +23,8 @@ const getClass = async (req, res) => {
 
 const createClass = async (req, res) => {
   try {
-    const cls = new Class(req.body);
+    const { name, division, semester, academicYear, department } = req.body;
+    const cls = new Class({ name, division, semester, academicYear, department });
     const saved = await cls.save();
     res.status(201).json(saved);
   } catch (error) {
@@ -33,7 +34,15 @@ const createClass = async (req, res) => {
 
 const updateClass = async (req, res) => {
   try {
-    const cls = await Class.findByIdAndUpdate(req.params.id, req.body, {
+    const { name, division, semester, academicYear, department } = req.body;
+    const updates = {};
+    if (name !== undefined) updates.name = name;
+    if (division !== undefined) updates.division = division;
+    if (semester !== undefined) updates.semester = semester;
+    if (academicYear !== undefined) updates.academicYear = academicYear;
+    if (department !== undefined) updates.department = department;
+
+    const cls = await Class.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
     });

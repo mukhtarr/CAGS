@@ -29,7 +29,8 @@ const getCourseOutcome = async (req, res) => {
 
 const createCourseOutcome = async (req, res) => {
   try {
-    const outcome = new CourseOutcome(req.body);
+    const { code, description, subject, bloomLevel, mappedPOs, mappedPSOs } = req.body;
+    const outcome = new CourseOutcome({ code, description, subject, bloomLevel, mappedPOs, mappedPSOs });
     const saved = await outcome.save();
     res.status(201).json(saved);
   } catch (error) {
@@ -39,9 +40,18 @@ const createCourseOutcome = async (req, res) => {
 
 const updateCourseOutcome = async (req, res) => {
   try {
+    const { code, description, subject, bloomLevel, mappedPOs, mappedPSOs } = req.body;
+    const updates = {};
+    if (code !== undefined) updates.code = code;
+    if (description !== undefined) updates.description = description;
+    if (subject !== undefined) updates.subject = subject;
+    if (bloomLevel !== undefined) updates.bloomLevel = bloomLevel;
+    if (mappedPOs !== undefined) updates.mappedPOs = mappedPOs;
+    if (mappedPSOs !== undefined) updates.mappedPSOs = mappedPSOs;
+
     const outcome = await CourseOutcome.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updates,
       { new: true, runValidators: true }
     );
     if (!outcome) {

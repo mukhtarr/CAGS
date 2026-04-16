@@ -23,7 +23,8 @@ const getProgramOutcome = async (req, res) => {
 
 const createProgramOutcome = async (req, res) => {
   try {
-    const outcome = new ProgramOutcome(req.body);
+    const { code, description, department } = req.body;
+    const outcome = new ProgramOutcome({ code, description, department });
     const saved = await outcome.save();
     res.status(201).json(saved);
   } catch (error) {
@@ -33,9 +34,15 @@ const createProgramOutcome = async (req, res) => {
 
 const updateProgramOutcome = async (req, res) => {
   try {
+    const { code, description, department } = req.body;
+    const updates = {};
+    if (code !== undefined) updates.code = code;
+    if (description !== undefined) updates.description = description;
+    if (department !== undefined) updates.department = department;
+
     const outcome = await ProgramOutcome.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updates,
       { new: true, runValidators: true }
     );
     if (!outcome) {

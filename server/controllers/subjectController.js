@@ -25,7 +25,8 @@ const getSubject = async (req, res) => {
 
 const createSubject = async (req, res) => {
   try {
-    const subject = new Subject(req.body);
+    const { subjectCode, name, semester, credits, type, department, courseOutcomes } = req.body;
+    const subject = new Subject({ subjectCode, name, semester, credits, type, department, courseOutcomes });
     const saved = await subject.save();
     res.status(201).json(saved);
   } catch (error) {
@@ -35,7 +36,17 @@ const createSubject = async (req, res) => {
 
 const updateSubject = async (req, res) => {
   try {
-    const subject = await Subject.findByIdAndUpdate(req.params.id, req.body, {
+    const { subjectCode, name, semester, credits, type, department, courseOutcomes } = req.body;
+    const updates = {};
+    if (subjectCode !== undefined) updates.subjectCode = subjectCode;
+    if (name !== undefined) updates.name = name;
+    if (semester !== undefined) updates.semester = semester;
+    if (credits !== undefined) updates.credits = credits;
+    if (type !== undefined) updates.type = type;
+    if (department !== undefined) updates.department = department;
+    if (courseOutcomes !== undefined) updates.courseOutcomes = courseOutcomes;
+
+    const subject = await Subject.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
     });

@@ -23,7 +23,8 @@ const getPSO = async (req, res) => {
 
 const createPSO = async (req, res) => {
   try {
-    const pso = new PSO(req.body);
+    const { code, description, department } = req.body;
+    const pso = new PSO({ code, description, department });
     const saved = await pso.save();
     res.status(201).json(saved);
   } catch (error) {
@@ -33,7 +34,13 @@ const createPSO = async (req, res) => {
 
 const updatePSO = async (req, res) => {
   try {
-    const pso = await PSO.findByIdAndUpdate(req.params.id, req.body, {
+    const { code, description, department } = req.body;
+    const updates = {};
+    if (code !== undefined) updates.code = code;
+    if (description !== undefined) updates.description = description;
+    if (department !== undefined) updates.department = department;
+
+    const pso = await PSO.findByIdAndUpdate(req.params.id, updates, {
       new: true,
       runValidators: true,
     });
