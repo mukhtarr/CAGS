@@ -35,8 +35,7 @@ const crudController = (Model) => ({
     if (!isValidObjectId(req.params.id))
       return res.status(400).json({ success: false, message: 'Invalid ID' });
     try {
-      const id = new mongoose.Types.ObjectId(req.params.id);
-      const doc = await Model.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+      const doc = await Model.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true, runValidators: true });
       if (!doc) return res.status(404).json({ success: false, message: 'Not found' });
       res.json({ success: true, data: doc });
     } catch (err) {
@@ -47,8 +46,7 @@ const crudController = (Model) => ({
     if (!isValidObjectId(req.params.id))
       return res.status(400).json({ success: false, message: 'Invalid ID' });
     try {
-      const id = new mongoose.Types.ObjectId(req.params.id);
-      const doc = await Model.findByIdAndDelete(id);
+      const doc = await Model.findByIdAndDelete(req.params.id);
       if (!doc) return res.status(404).json({ success: false, message: 'Not found' });
       res.json({ success: true, message: 'Deleted successfully' });
     } catch (err) {
