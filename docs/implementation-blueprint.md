@@ -220,6 +220,8 @@ erDiagram
 
 ### 4.1 Collection Groups
 
+Collection names should follow a lowerCamelCase plural convention.
+
 | Group | Key Collections |
 |---|---|
 | Identity | users, roles, permissions, refreshTokens, passwordResets, twoFactorSecrets |
@@ -427,6 +429,7 @@ frontend/
 - Base path: `/api/v1`
 - JWT access token + refresh token flow
 - Pagination via `page`, `limit`, `sort`, `search`
+- `sort` format: `field:asc` or `field:desc`
 - Standard audit headers captured server-side
 - Uniform response shape:
   - `success`
@@ -456,7 +459,7 @@ frontend/
 ### 7.3 Selected Request Expectations
 - Import endpoints accept file upload plus mapping metadata
 - Approval endpoints require status transition validation
-- Report endpoints support filter parameters and async generation when large
+- Report endpoints support filter parameters and async generation when row volume exceeds configured thresholds, estimated processing exceeds a few seconds, or file generation is delegated to job workers
 - Marks and attendance endpoints must enforce allocation ownership and locking rules
 
 ### 7.4 Security Expectations
