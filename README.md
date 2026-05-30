@@ -6,4 +6,4 @@ Academic File Automation
 
 The initial implementation blueprint for EduOBE is available at:
 
-- `/tmp/workspace/mukhtarr/CAGS/docs/implementation-blueprint.md`
+- `docs/implementation-blueprint.md`
