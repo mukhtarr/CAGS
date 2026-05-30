@@ -125,7 +125,7 @@ flowchart LR
     AUTH --> DB
     REPORTS --> DB
     JOBS --> DB
-    FILES --> S3[Cloudinary / AWS S3]
+    FILES --> STORAGE[Cloudinary / AWS S3]
     JOBS --> MAIL[Email / SMS Providers]
 ```
 
@@ -286,7 +286,7 @@ All major collections should include:
 
 #### attainmentConfigs
 - formula definitions
-- direct/indirect sources
+- direct/indirect attainment measurement sources
 - thresholds
 - aggregation logic
 - applicable scope
