@@ -12,19 +12,19 @@ The initial implementation blueprint for EduOBE is available at:
 
 The repository now contains the initial application scaffold:
 
-- `/tmp/workspace/mukhtarr/CAGS/backend` - Express API foundation
-- `/tmp/workspace/mukhtarr/CAGS/frontend` - React + Vite frontend foundation
+- `./backend` - Express API foundation
+- `./frontend` - React + Vite frontend foundation
 
 ## Getting started
 
 Frontend:
 
-- `npm --prefix /tmp/workspace/mukhtarr/CAGS/frontend run dev`
+- `npm --prefix frontend run dev`
 
 Backend:
 
-- `npm --prefix /tmp/workspace/mukhtarr/CAGS/backend run dev`
+- `npm --prefix backend run dev`
 
 Build frontend:
 
-- `npm --prefix /tmp/workspace/mukhtarr/CAGS/frontend run build`
+- `npm --prefix frontend run build`

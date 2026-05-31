@@ -1,5 +1,5 @@
 {
-  "name": "cags",
+  "name": "eduobe-workspace",
   "private": true,
   "workspaces": [
     "backend",
