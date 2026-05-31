@@ -1,5 +1,5 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined'
 import {
   Box,
   Button,
@@ -33,7 +33,7 @@ function DashboardPage() {
         <CardContent>
           <Stack spacing={2}>
             <Chip
-              icon={<CheckCircleOutlineIcon />}
+              icon={<CheckCircleOutlineOutlinedIcon />}
               label="Foundation scaffold started"
               color="secondary"
               sx={{ width: 'fit-content' }}
